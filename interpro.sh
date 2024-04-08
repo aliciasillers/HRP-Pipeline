@@ -13,4 +13,4 @@
 
 deprecated/interproscan/5.32-71.0
 
-interproscan.sh -f TSV -appl Pfam -i ../../Genome/farr1.protein.fa -b farr1.interpro
+interproscan.sh -f TSV -appl Pfam -i ../Genome/farr1.protein.fa -b farr1.interpro

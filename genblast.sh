@@ -11,7 +11,7 @@
 #SBATCH --mail-user=asillers@ucdavis.edu # Email to which notifications will be$
 #SBATCH --time=06:00:00
 
-module load conda/lastest
+module load conda/latest
 conda activate hrpenv
 
-genblastG -q Full-length_NB-LRRs.fasta -t ../../Genome/farr1.fa -gff -cdna -pro -o genblastG-output
+genblastG -q full-length_NB-LRRs.fa -t ../Genome/farr1.fa -gff -cdna -pro -o genblastG-output
