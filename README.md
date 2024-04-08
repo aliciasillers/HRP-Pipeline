@@ -8,9 +8,9 @@ This repository contains my personal documentation of running the full-length Ho
 
 1. Obtain necessary software
 
-Required software includes InterProScan, MEME suite, Bedtools, genBlastG, and AGAT suite. I created a conda environment for installation of the programs to which I did not already have access, which included only genBlastG and the AGAT suite. If you need additional programs, you can add them to the hrp.yml file in this repository.
-To create the environment, run env.sh
-Alternatively, use the following command:
+> Required software includes InterProScan, MEME suite, Bedtools, genBlastG, and AGAT suite. I created a conda environment for installation of the programs to which I did not already have access, which included only genBlastG and the AGAT suite. If you need additional programs, you can add them to the hrp.yml file in this repository.
+> To create the environment, run env.sh
+> Alternatively, use the following command:
 ```bash
 conda env create -n hrpenv -f hrp.yml
 ```
