@@ -16,9 +16,9 @@ conda env create -n hrpenv -f hrp.yml
 
 2. Prepare data
 
-You will need a genome fasta file, a protein fasta file, and ideally an annotation file
+You will need a genome fasta file, a protein fasta file, and ideally an annotation file. I am using data from the following link: https://datadryad.org/stash/dataset/doi:10.25338/B8TP7G 
 
-3. Protein Domain Search: interpro.sh
+3. Protein domain search: interpro.sh
 
 
 ```bash
@@ -42,3 +42,17 @@ bedtools getfasta -fi ../Genome/farr1.protein.fa -bed NB.bed -fo NB_Pfam_Domain_
 ```bash
 meme NB_Pfam_Domain_Sequences.fasta -o meme_out -protein -mod zoops -nmotifs 19 -minw 4 -maxw 7 -objfun classic -markov_order 0
 ```
+
+7. Use motifs to identify additional domains: motifpt2.sh
+
+```bash
+mast meme_out/meme.txt ../../Genome/farr1.protein.fa -o mast_out
+```
+
+8. Get gene IDs from mast output (output from motifpt2.sh): getids.sh
+
+```bash
+awk '/SEQUENCE NAME/ && /DESCRIPTION/{print;flag=1;next} /^$/{flag=0} flag { print$1 }' mast_out/mast.txt | awk 'NR>=3' > geneids.txt
+```
+
+9. Get sequences of gene list from mast: faidx.sh
