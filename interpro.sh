@@ -11,6 +11,6 @@
 #SBATCH --mail-user=asillers@ucdavis.edu # Email to which notifications will be$
 #SBATCH --time=8:00:00
 
-deprecated/interproscan/5.32-71.0
+module load deprecated/interproscan/5.32-71.0
 
 interproscan.sh -f TSV -appl Pfam -i ../Genome/farr1.protein.fa -b farr1.interpro

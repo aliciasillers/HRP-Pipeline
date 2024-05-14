@@ -13,4 +13,4 @@
 
 module load samtools
 
-samtools faidx -r geneids.txt ../../Genome/farr1.protein.fa -o farr1.protein.subset.fa
+samtools faidx -r geneids.txt ../Genome/farr1.protein.fa -o farr1.protein.subset.fa
