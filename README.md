@@ -56,3 +56,20 @@ awk '/SEQUENCE NAME/ && /DESCRIPTION/{print;flag=1;next} /^$/{flag=0} flag { pri
 ```
 
 9. Get sequences of gene list from mast: faidx.sh
+
+```bash
+samtools faidx -r geneids.txt ../Genome/farr1.protein.fa -o farr1.protein.subset.fa
+```
+
+10. Check whether NLRs are complete or partial: HRPscript.sh
+
+```bash
+./IPS2fpGs.sh farr1.interpro2.tsv > nlrlengths.tsv
+```
+
+
+11. getids2.sh
+
+12. faidx2.sh
+
+13. genblastG
