@@ -67,9 +67,39 @@ samtools faidx -r geneids.txt ../Genome/farr1.protein.fa -o farr1.protein.subset
 ./IPS2fpGs.sh farr1.interpro2.tsv > nlrlengths.tsv
 ```
 
+11. Get gene IDs for complete/full-length NLR genes: getids2.sh
 
-11. getids2.sh
+```bash
+awk '$2 == "full-length'' {print $1}' nlrlengths.tsv > geneids2.txt
+```
 
-12. faidx2.sh
+12. Get sequences of full-length NLR genes: faidx2.sh
 
-13. genblastG
+```
+samtools faidx -r geneids2.txt ../Genome/farr1.transcript.fa -o full-lenth_NB-LRRs.fa
+```
+
+13. Identify paralogous gene models using genblastG: genblast.sh
+
+```
+genblastG -q full-length_NB-LRRs.fa -t ../Genome/farr1.fa -gff -cdna -pro -o genblastG-output
+```
+
+14. Filter gene models based on length: filter.sh
+
+```
+agat_sp_filter_gene_by_length.pl --gff genblastG-output_1.1c_2.3_s1_0_16_1.gff --size 20000 --test "<" -o genblastG-output_FbL.gff
+```
+
+15. Identify overlapping gene models gene models: overlaps.sh
+
+```
+grep transcript genblastG-output_FbL.gff | gff2bed | sortBed | clusterBed -s | awk -F'=|;|\t' '{ print $11,$16,$1,$2,$3 }'  > genblastG-output_FbL_clusters
+```
+
+16. Estimate protein sequence lengths: seqlengths.sh
+
+```
+awk 'BEGIN{FS="[> ]"} /^>/{val=$2;next}  {print val,length($0);val=""} END{if(val!=""){print val}}' genblastG-output_1.1c_2.3_s1_0_16_1.pro | tr ' ' \\t | sort > genblastG-output_FbL_length
+```
+ 
